@@ -1,0 +1,6 @@
+{
+    "1": "BOT\n\n$help\nヘルプを表示します\n\n()は任意、[]は必須",
+    "2": "遊び\n\n$frame [user]\n遺影を作成します\n$snipe (count) (miq) (c)\n削除/編集されたメッセージを取得します\n$list\n削除/編集されたメッセージの一覧を取得します\n$miq (c)\nMake it a Quoteを生成します\n$fiq [user] [content] (c)\nMake it a Quoteを生成します\n$gemini [text]\nGeminiと会話します(textをclearにすると履歴削除)\n\n()は任意、[]は必須",
+    "3": "情報\n\n$user(user)\nユーザーの情報を取得します\n$avatar (user)\nユーザーのアバターを取得します\n$banner (user)\nユーザーのバナーを取得します\n$server (server)\nサーバーの情報を取得します\n$savatar (server)\nサーバーのアバターを取得します\n$sbanner (server)\nサーバーのバナーを取得します\n\n()は任意、[]は必須",
+    "4": "オーナー\n\n$send\nメッセージを送信します\n$clear\n履歴を全て削除します\n$white [add or remove or list] [user]\nホワイトリストにユーザーを追加／削除します(listの場合はuserなし)\n\n()は任意、[]は必須"
+}
