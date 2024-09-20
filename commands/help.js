@@ -21,7 +21,7 @@ module.exports = {
       
         const embed = new WebEmbed()
         .setColor('GREEN')
-        .setDescription('BOT\n\n*help\nヘルプを表示します\n\n()は任意、[]は必須')
+        .setDescription('BOT\n\nhelp\nヘルプを表示します\n\n()は任意、[]は必須')
         .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
         .setTitle('ヘルプ');
         message.channel.send({ content: `[⁠︎](${embed})` })
