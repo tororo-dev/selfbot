@@ -23,16 +23,11 @@ module.exports = {
         const wadaiURL = 'https://wadaiapi-xupk7ji5.b4a.run/?type=雑談';
 
         try {
-            const response = await fetch(wadaiURL).json().url;
-            if (!response.ok) throw new Error('Failed to fetch the image');
-            const buffer = await response.buffer();
+            const response = await fetch(wadaiURL);
+            const data = await response.json();
+            const imageURL = data.url;
 
-            const filePath = path.join(__dirname, 'omikuji.png');
-            await fs.promises.writeFile(filePath, buffer);
-
-            const attachment = new MessageAttachment(filePath);
-
-            await message.channel.send({ files: [attachment] })
+            await message.channel.send(imageURL)
             .then(sentMessage => {
                 message.react('⭕');
             });
