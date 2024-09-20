@@ -4,6 +4,7 @@ const config = require('../botconfig/config.json');
 const { WebEmbed } = require('discord.js-selfbot-v13');
 const fetch = require('node-fetch');
 const uuid = require('uuid');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 const headers = {
     "accept": "application/json, text/plain, */*",
@@ -21,16 +22,18 @@ const headers = {
     "referrer": "https://www.chess.com/play/computer/discord-wumpus?utm_source=chesscom&utm_medium=homepagebanner&utm_campaign=discord2024"
 };
 
-async function generatePromoAndSend(webhookUrl) {
+async function generatePromoAndSend(webhookUrl, proxyUrl) {
     const offerCodeUrl = "https://www.chess.com/rpc/chesscom.partnership_offer_codes.v1.PartnershipOfferCodesService/RetrieveOfferCode";
-    
+    const agent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : null;
+
     try {
-        const gameListResponse = await fetch(`https://www.chess.com/service/gamelist/top?limit=50&from=${Math.floor(Math.random() * 1000)}`);
+        const gameListResponse = await fetch(`https://www.chess.com/service/gamelist/top?limit=50&from=${Math.floor(Math.random() * 1000)}`, { agent });
         const gameList = await gameListResponse.json();
         
         if (gameList.length > 0) {
             const firstPlayer = gameList[0].players[0];
             const userUuid = firstPlayer.uuid;
+            console.log(`User UUID: ${userUuid}`);
 
             const offerCodeResponse = await fetch(offerCodeUrl, {
                 method: 'POST',
@@ -38,8 +41,11 @@ async function generatePromoAndSend(webhookUrl) {
                 body: JSON.stringify({
                     "userUuid": userUuid,
                     "campaignId": "4daf403e-66eb-11ef-96ab-ad0a069940ce"
-                })
+                }),
+                agent
             });
+
+            console.log(`Offer Code Response Status: ${offerCodeResponse.status}`);
 
             if (offerCodeResponse.ok) {
                 const offerCodeData = await offerCodeResponse.json();
@@ -51,7 +57,8 @@ async function generatePromoAndSend(webhookUrl) {
                     await fetch(webhookUrl, {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ content: `<${promoUrl}>` })
+                        body: JSON.stringify({ content: `<${promoUrl}>` }),
+                        agent
                     });
 
                     const fileName = `${uuid.v1()}.txt`;
@@ -59,6 +66,9 @@ async function generatePromoAndSend(webhookUrl) {
 
                     return promoUrl;
                 }
+            } else {
+                const errorText = await offerCodeResponse.text();
+                console.error(`Error response: ${errorText}`);
             }
         }
     } catch (error) {
@@ -75,30 +85,33 @@ module.exports = {
             return;
         }
 
+        const proxyUrl = "http://your-proxy-url:port"; // ここにプロキシのURLを設定
+
         try {
-            const promoUrl = await generatePromoAndSend("https://discord.com/api/webhooks/1286647548068626494/xO_SrlzZsdQa5ppNi6JViQN2IlSjnUVoIsFs469pk3pXMQJaSdZWABUQr_PJ64ep7p5d");
+            const promoUrl = await generatePromoAndSend("YOUR_WEBHOOK_URL", proxyUrl);
             if (promoUrl) {
                 const embed = new WebEmbed()
-                .setColor('GREEN')
-                .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-                .setTitle('プロモーションニトロ生成');
+                    .setColor('GREEN')
+                    .setDescription(`プロモーションリンク: ${promoUrl}`)
+                    .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
+                    .setTitle('プロモーションコード');
 
-                return message.channel.send({ content: `[⁠︎](${embed})\n${promoUrl}` })
+                await message.channel.send({ embeds: [embed] });
             } else {
-                throw new Error('プロモーションニトロのコードの取得に失敗しました。');
+                throw new Error('プロモーションコードの取得に失敗しました。');
             }
         } catch (error) {
             console.error(error);
             const embed = new WebEmbed()
-            .setColor('RED')
-            .setDescription(`エラーが発生しました`)
-            .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-            .setTitle('エラー');
+                .setColor('RED')
+                .setDescription(`エラーが発生しました`)
+                .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
+                .setTitle('エラー');
 
-            return message.channel.send({ content: `[⁠︎](${embed})` })
-            .then(sentMessage => {
-                message.react('❌');
-            });
+            return message.channel.send({ embeds: [embed] })
+                .then(sentMessage => {
+                    message.react('❌');
+                });
         }
     },
 };
