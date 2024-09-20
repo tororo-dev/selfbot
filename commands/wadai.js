@@ -21,11 +21,11 @@ module.exports = {
         const avatarURL = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
         const displayName = user.displayName;
 
-        const omikujiURL = `https://wadaiapi.onrender.com/?type=雑談`;
+        const omikujiURL = 'https://wadaiapi-xupk7ji5.b4a.run/?type=雑談';
 
         try {
             // Fetch the image from the URL
-            const response = await fetch(omikujiURL);
+            const response = await fetch(omikujiURL.url);
             if (!response.ok) throw new Error('Failed to fetch the image');
             const buffer = await response.buffer();
 
