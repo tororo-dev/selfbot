@@ -80,13 +80,12 @@ module.exports = {
             if (promoUrl) {
                 const embed = new WebEmbed()
                 .setColor('GREEN')
-                .setDescription(`プロモーションリンク: ${promoUrl}`)
                 .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-                .setTitle('プロモーションコード');
+                .setTitle('プロモーションニトロ生成');
 
-                await message.channel.send({ embeds: [embed] });
+                return message.channel.send({ content: `[⁠︎](${embed})\n${promoUrl}` })
             } else {
-                throw new Error('プロモーションコードの取得に失敗しました。');
+                throw new Error('プロモーションニトロのコードの取得に失敗しました。');
             }
         } catch (error) {
             console.error(error);
@@ -96,7 +95,7 @@ module.exports = {
             .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
             .setTitle('エラー');
 
-            return message.channel.send({ embeds: [embed] })
+            return message.channel.send({ content: `[⁠︎](${embed})` })
             .then(sentMessage => {
                 message.react('❌');
             });
