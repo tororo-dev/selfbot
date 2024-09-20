@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { MessageAttachment, MessageEmbed } = require('discord.js-selfbot-v13');
+const { MessageEmbed } = require('discord.js-selfbot-v13');
 const fs = require('fs');
 const path = require('path');
 const config = require('../botconfig/config.json');
