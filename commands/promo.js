@@ -74,12 +74,7 @@ module.exports = {
         try {
             const promoUrl = await generatePromoAndSend();
             if (promoUrl) {
-                const embed = new WebEmbed()
-                .setColor('GREEN')
-                .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-                .setTitle('プロモーションニトロ');
-
-                await message.channel.send({ content: `[⁠︎](${embed})\n${promoUrl}` })
+                await message.channel.send({ content: `${promoUrl}` })
             } else {
                 throw new Error('プロモーションコードの取得に失敗しました。');
             }
