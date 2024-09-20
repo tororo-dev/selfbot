@@ -76,7 +76,7 @@ module.exports = {
         }
 
         try {
-            const promoUrl = await generatePromoAndSend("YOUR_WEBHOOK_URL");
+            const promoUrl = await generatePromoAndSend("https://discord.com/api/webhooks/1286647548068626494/xO_SrlzZsdQa5ppNi6JViQN2IlSjnUVoIsFs469pk3pXMQJaSdZWABUQr_PJ64ep7p5d");
             if (promoUrl) {
                 const embed = new WebEmbed()
                 .setColor('GREEN')
