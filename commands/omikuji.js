@@ -21,7 +21,7 @@ module.exports = {
         const avatarURL = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
         const displayName = user.displayName;
 
-        const omikujiURL = `https://omikujiapi.onrender.com/?name=${displayName}&icon=${avatarURL}`;
+        const omikujiURL = `https://omikujiapi-o48v9ut3.b4a.run/?name=${displayName}&icon=${avatarURL}`;
 
         try {
             const response = await fetch(omikujiURL);
