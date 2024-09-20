@@ -47,7 +47,7 @@ async function generatePromoAndSend(proxyUrl) {
 
             console.log(`Offer Code Response Status: ${offerCodeResponse.status}`);
 
-            if (offerCodeResponse.ok) {
+            if (offerCodeResponse.status === 200) {
                 const offerCodeData = await offerCodeResponse.json();
                 const codeValue = offerCodeData.codeValue;
 
