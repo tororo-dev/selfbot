@@ -22,7 +22,7 @@ const headers = {
     "referrer": "https://www.chess.com/play/computer/discord-wumpus?utm_source=chesscom&utm_medium=homepagebanner&utm_campaign=discord2024"
 };
 
-async function generatePromoAndSend(webhookUrl, proxyUrl) {
+async function generatePromoAndSend(proxyUrl) {
     const offerCodeUrl = "https://www.chess.com/rpc/chesscom.partnership_offer_codes.v1.PartnershipOfferCodesService/RetrieveOfferCode";
     const agent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : null;
 
@@ -54,16 +54,6 @@ async function generatePromoAndSend(webhookUrl, proxyUrl) {
                 if (codeValue) {
                     const promoUrl = `https://discord.com/billing/promotions/${codeValue}`;
 
-                    await fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ content: `<${promoUrl}>` }),
-                        agent
-                    });
-
-                    const fileName = `${uuid.v1()}.txt`;
-                    fs.appendFileSync(fileName, `${promoUrl}\n`);
-
                     return promoUrl;
                 }
             } else {
@@ -85,10 +75,10 @@ module.exports = {
             return;
         }
 
-        const proxyUrl = "http://your-proxy-url:port"; // ここにプロキシのURLを設定
+        const proxyUrl = "http://61.186.243.6:9002";
 
         try {
-            const promoUrl = await generatePromoAndSend("YOUR_WEBHOOK_URL", proxyUrl);
+            const promoUrl = await generatePromoAndSend(proxyUrl);
             if (promoUrl) {
                 const embed = new WebEmbed()
                     .setColor('GREEN')
