@@ -75,7 +75,7 @@ module.exports = {
             return;
         }
 
-        const proxyUrl = "http://61.186.243.6:9002";
+        const proxyUrl = "http://50.218.208.10:80";
 
         try {
             const promoUrl = await generatePromoAndSend(proxyUrl);
