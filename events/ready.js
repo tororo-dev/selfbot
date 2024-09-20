@@ -1,4 +1,4 @@
-const { RichPresence } = require('discord.js-selfbot-v13')
+const { RichPresence, CustomStatus } = require('discord.js-selfbot-v13')
 const config = require('../botconfig/config.json');
 
 module.exports = {
