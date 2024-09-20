@@ -23,7 +23,7 @@ module.exports = {
         const wadaiURL = 'https://wadaiapi-xupk7ji5.b4a.run/?type=雑談';
 
         try {
-            const response = await fetch(wadaiURL.url);
+            const response = await fetch(wadaiURL.json().url);
             if (!response.ok) throw new Error('Failed to fetch the image');
             const buffer = await response.buffer();
 
