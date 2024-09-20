@@ -18,31 +18,25 @@ module.exports = {
         }
 
         const user = message.author;
-        const avatarURL = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
         const displayName = user.displayName;
 
-        const omikujiURL = 'https://wadaiapi-xupk7ji5.b4a.run/?type=雑談';
+        const wadaiURL = 'https://wadaiapi-xupk7ji5.b4a.run/?type=雑談';
 
         try {
-            // Fetch the image from the URL
-            const response = await fetch(omikujiURL.url);
+            const response = await fetch(wadaiURL.url);
             if (!response.ok) throw new Error('Failed to fetch the image');
             const buffer = await response.buffer();
 
-            // Save the image to a file
             const filePath = path.join(__dirname, 'omikuji.png');
             await fs.promises.writeFile(filePath, buffer);
 
-            // Create a MessageAttachment
             const attachment = new MessageAttachment(filePath);
 
-            // Send the attachment
             await message.channel.send({ files: [attachment] })
             .then(sentMessage => {
                 message.react('⭕');
             });
 
-            // Delete the file
             await fs.promises.unlink(filePath);
         } catch (err) {
             console.error(err);
