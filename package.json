@@ -17,8 +17,8 @@
     "discord.js-selfbot-v13": "^2.14.10",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
+    "jsdom": "^24.1.0",
     "path": "0.12.7",
-    "uuid": "10.0.0",
-    "unlimited-ai": "^2.0.1"
+    "uuid": "10.0.0"
   }
 }
