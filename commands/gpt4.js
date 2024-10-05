@@ -34,6 +34,7 @@ module.exports = {
         }
 
         try {
+            const uuid = uuidv4()
             const filePath = path.join(__dirname, 'database', `${uuid}.txt`);
             const model = 'gpt-4';
             const text = [
