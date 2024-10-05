@@ -10,14 +10,13 @@
   "author": "4btin",
   "license": "MIT",
   "dependencies": {
-    "@google/generative-ai": "^0.14.0",
+    "@distube/ytdl-core": "^4.14.4",
     "axios": "^1.7.2",
     "canvas": "^2.11.1",
     "chalk": "^4.1.2",
     "discord.js-selfbot-v13": "^2.14.10",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
-    "jsdom": "^24.1.0",
     "path": "0.12.7",
     "uuid": "10.0.0"
   }
