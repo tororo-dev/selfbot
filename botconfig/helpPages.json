@@ -5,5 +5,5 @@
     "4": "遊び\n\nomikuji\nおみくじを引きます\nwadai\n話題を生成します\niei [user]\n遺影を作成します\n\n()は任意、[]は必須",
     "5": "便利\n\njp (text)\n日本語に翻訳します\nen (text)\n英語に翻訳します\ngemini [text]\nGeminiと会話します(textをclearにすると履歴削除)\n\n()は任意、[]は必須",
     "6": "情報\n\nuser(user)\nユーザーの情報を取得します\navatar (user)\nユーザーのアバターを取得します\nbanner (user)\nユーザーのバナーを取得します\nserver (server)\nサーバーの情報を取得します\nsavatar (server)\nサーバーのアバターを取得します\nsbanner (server)\nサーバーのバナーを取得します\n\n()は任意、[]は必須",
-    "7": "オーナー\n\nsend\nメッセージを送信します\nclear\n履歴を全て削除します\nwhite [add or remove or list] [user]\nホワイトリストにユーザーを追加／削除します(listの場合はuserなし)\npromo\nプロモーションニトロを生成します\n\n()は任意、[]は必須"
+    "7": "オーナー\n\nsend\nメッセージを送信します\nclear\n履歴を全て削除します\nwhite [add or remove or list] [user]\nホワイトリストにユーザーを追加／削除します(listの場合はuserなし)\n\n()は任意、[]は必須"
 }
