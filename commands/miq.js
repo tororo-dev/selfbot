@@ -47,14 +47,8 @@ module.exports = {
             .then(response => response.json())
             .then(data => {
                 const imageUrl = data.url;
-                const embed = new WebEmbed()
-                    .setColor('GREEN')
-                    .setDescription(`${repliedMessage.author.username}\n\n${repliedMessage.content}`)
-                    .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-                    .setTitle('Make it a Quote')
-                    .setImage(imageUrl);
 
-                message.channel.send({ content: `[⁠︎](${embed})` })
+                message.channel.send(imageUrl)
                 .then(sentMessage => {
                     quotes[sentMessage.id] = {
                         "user": user.id,
