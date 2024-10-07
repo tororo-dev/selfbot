@@ -50,13 +50,8 @@ module.exports = {
 
         if (server.banner) {
             const bannerURL = server.bannerURL({ format: 'png', size: 1024 });
-            const embed = new WebEmbed()
-            .setColor('GREEN')
-            .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-            .setTitle(server.name)
-            .setImage(bannerURL);
               
-            message.channel.send({ content: `[⁠︎](${embed}) [⁠︎](${bannerURL})` })
+            message.channel.send(bannerURL)
             .then(msg =>{
                 message.react('⭕');
             });
