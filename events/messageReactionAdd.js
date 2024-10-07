@@ -106,14 +106,8 @@ module.exports = {
                                 .then(response => response.json())
                                 .then(data => {
                                     const imageUrl = data.url;
-                                    const embed = new WebEmbed()
-                                        .setColor('GREEN')
-                                        .setDescription(`${fetchedUser.username}\n\n${text}`)
-                                        .setProvider({ name: `@${user.username}`, url: `https://discord.com/users/${user.id}` })
-                                        .setTitle('Make it a Quote')
-                                        .setImage(imageUrl);
 
-                                    reaction.message.edit({ content: `[⁠︎](${embed})` })
+                                    reaction.message.edit(imageUrl)
                                         .then(() => {
                                             quotes[messageID].color = newColor;
                                             fs.writeFileSync(quotesPath, JSON.stringify(quotes, null, 2), 'utf8');
