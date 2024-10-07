@@ -28,7 +28,10 @@ module.exports = {
             const data = await response.json();
             const imageURL = data.url;
 
-            message.channel.send(imageURL);
+            message.channel.send(imageURL)
+            .then(sentMessage => {
+                message.react('⭕');
+            });
         } catch (err) {
             console.error(err);
             const embed = new MessageEmbed()
