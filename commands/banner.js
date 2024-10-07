@@ -46,13 +46,8 @@ module.exports = {
         const fetchedUser = await message.client.users.fetch(user.id, { force: true });
         if (fetchedUser.banner) {
             const bannerUrl = fetchedUser.bannerURL({ size: 2048, dynamic: true });
-            const embed = new WebEmbed()
-            .setColor('GREEN')
-            .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-            .setTitle(user.username)
-            .setImage(bannerUrl);
               
-            message.channel.send({ content: `[⁠︎](${embed}) [⁠︎](${bannerUrl})` })
+            message.channel.send(bannerUrl)
             .then(msg =>{
                 message.react('⭕');
             });
