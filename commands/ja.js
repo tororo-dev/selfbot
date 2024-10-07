@@ -27,13 +27,8 @@ module.exports = {
           const translated = data.sentences.map((sentence) => {
             return sentence.trans;
           });
-          const embed = new WebEmbed()
-          .setColor('GREEN')
-          .setDescription(`[${data.src}]->[ja]\n`)
-          .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-          .setTitle(translated.join(""));
 
-          message.channel.send({ content: `[⁠︎](${embed})` })
+          message.channel.send(`[${data.src}]->[ja]\n${translated.join("")}`)
           .then(sentMessage => {
               message.react('⭕');
           });
