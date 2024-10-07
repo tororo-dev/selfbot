@@ -48,10 +48,7 @@ module.exports = {
 
         const avatarURL = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=1024`;
 
-        const embed = new WebEmbed()
-        .setImage(avatarURL);
-
-        message.channel.send({ content: `[⁠︎](${embed}) [⁠︎](${avatarURL})` })
+        message.channel.send(avatarURL)
         .then(sentMessage => {
             message.react('⭕');
         });
