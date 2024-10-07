@@ -51,13 +51,7 @@ module.exports = {
         const serverIconURL = server.iconURL();
 
         if (serverIconURL) {
-            const embed = new WebEmbed()
-            .setColor('GREEN')
-            .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
-            .setTitle(server.name)
-            .setImage(serverIconURL);
-
-            message.channel.send({ content: `[⁠︎](${embed}) [⁠︎](${serverIconURL})` })
+            message.channel.send(serverIconURL)
             .then(sentMessage => {
                 message.react('⭕');
             });
