@@ -64,7 +64,7 @@ module.exports = {
             await channel.send(text);
             const embed = new WebEmbed()
             .setColor('GREEN')
-            .setDescription(`メッセージを${channel.name}送信しました`)
+            .setDescription(`メッセージを${channel.name}に送信しました`)
             .setProvider({ name: `@${message.author.username}`, url: `https://discord.com/users/${message.author.id}` })
             .setTitle('成功');
             return message.channel.send({ content: `[⁠︎](${embed})` })
