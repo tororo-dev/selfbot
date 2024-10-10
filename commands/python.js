@@ -4,7 +4,7 @@ const { WebEmbed } = require('discord.js-selfbot-v13');
 
 module.exports = {
     name: 'python',
-    description: 'Execute a Python script',
+    description: 'python command',
     async execute(message, args, client) {
         const userID = message.author.id;
         const config = require('../botconfig/config.json');
