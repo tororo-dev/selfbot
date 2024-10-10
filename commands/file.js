@@ -35,15 +35,15 @@ module.exports = {
             editingFiles[message.author.id] = filename;
             await message.channel.send('ファイル内容を送信してください');
         }
-    }
-    client.on('messageCreate', async (message) => {
-        const userID = message.author.id;
+        client.on('messageCreate', async (message) => {
+            const userID = message.author.id;
 
-        if (editingFiles[userID]) {
-            const filename = editingFiles[userID];
-            fs.writeFileSync(`../files/${filename}`, message.content);
-            await message.channel.send(`${filename}が更新されました`);
-            delete editingFiles[userID];
-        }
-    });
+            if (editingFiles[userID]) {
+                const filename = editingFiles[userID];
+                fs.writeFileSync(`../files/${filename}`, message.content);
+                await message.channel.send(`${filename}が更新されました`);
+                delete editingFiles[userID];
+            }
+        });
+    }
 };
