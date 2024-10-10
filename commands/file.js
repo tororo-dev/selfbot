@@ -25,7 +25,7 @@ module.exports = {
 
         const filename = args[0];
 
-        if (fs.existsSync(filename)) {
+        if (fs.existsSync(`../files/${filename}`)) {
             const content = fs.readFileSync(`../files/${filename}`, 'utf8');
             await message.channel.send(`\`\`\`\n${content}\n\`\`\``);
             editingFiles[message.author.id] = filename;
