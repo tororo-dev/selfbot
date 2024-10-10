@@ -26,14 +26,14 @@ module.exports = {
         const filename = args[0];
 
         if (fs.existsSync(filename)) {
-            const content = fs.readFileSync(filename, 'utf8');
+            const content = fs.readFileSync(`../files/${filename}`, 'utf8');
             await message.channel.send(`\`\`\`\n${content}\n\`\`\``);
             editingFiles[message.author.id] = filename;
             await message.channel.send('ファイル内容を送信してください');
         } else {
-            fs.writeFileSync(filename, '');
+            fs.writeFileSync(`../files/${filename}`, '');
             editingFiles[message.author.id] = filename;
-            await message.channel.send('ファイル内容を送信してください。');
+            await message.channel.send('ファイル内容を送信してください');
         }
     }
 };
@@ -43,7 +43,7 @@ client.on('messageCreate', async (message) => {
 
     if (editingFiles[userID]) {
         const filename = editingFiles[userID];
-        fs.writeFileSync(filename, message.content);
+        fs.writeFileSync(`../files/${filename}`, message.content);
         await message.channel.send(`${filename}が更新されました`);
         delete editingFiles[userID];
     }
