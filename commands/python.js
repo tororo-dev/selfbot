@@ -24,7 +24,7 @@ module.exports = {
 
         const filename = args[0];
 
-        if (fs.existsSync(filename)) {
+        if (fs.existsSync(`../files/${filename}`)) {
             try {
                 const result = execSync(`python files/${filename}`, { encoding: 'utf-8' });
                 await message.channel.send(`\`\`\`bash\n${result}\n\`\`\``);
