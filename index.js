@@ -13,8 +13,8 @@ const client = new Client({
 const jsk = new Jishaku(client, {
     useableUserId: ["1187337651146215496"],
     allowMultiShRunning: false,
-    prefix: "Hey,Siri",
-    encoding: "utf-8",
+    prefix: "*",
+    encoding: "UTF-8",
 });
 
 const http = require('http');
