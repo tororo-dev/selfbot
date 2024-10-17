@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 const config = require('./botconfig/config.json');
-const { Jishaku } = require('@omoti/jishaku');
+const { Jishaku } = require('@djsk/v13');
 
 const client = new Client({
   checkUpdate: false,
