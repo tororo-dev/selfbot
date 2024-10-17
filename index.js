@@ -10,11 +10,13 @@ const client = new Client({
   checkUpdate: false,
 });
 
-const jsk = new Jishaku(client, {
-    useableUserId: ["1187337651146215496"],
-    allowMultiShRunning: false,
-    prefix: "*",
+let jsk = {};
+
+jsk = new Jishaku(client, {
+    prefix: '*',
+    consoleLog: true,
     encoding: "UTF-8",
+    useableUserId: ["1187337651146215496"]
 });
 
 const http = require('http');
