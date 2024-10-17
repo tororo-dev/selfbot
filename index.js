@@ -4,9 +4,17 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 const config = require('./botconfig/config.json');
+const { Jishaku } = require('@omoti/jishaku');
 
 const client = new Client({
   checkUpdate: false,
+});
+
+const jsk = new Jishaku(client, {
+    useableUserId: ["1187337651146215496"],
+    allowMultiShRunning: false,
+    prefix: "Hey,Siri",
+    encoding: "utf-8",
 });
 
 const http = require('http');
@@ -36,5 +44,9 @@ for (const file of eventFiles) {
     }
     console.log(chalk.green(`Loaded Event: ${file}`));
 }
+
+client.on("messageCreate", async (message) => {
+  await jsk.onMessageCreated(message);
+});
 
 client.login(process.env.token);
