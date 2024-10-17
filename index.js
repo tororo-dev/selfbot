@@ -4,19 +4,17 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 const config = require('./botconfig/config.json');
-const { Jishaku } = require('@djsk/v13');
+const { Jishaku } = require('@omoti/jsk');
 
 const client = new Client({
   checkUpdate: false,
 });
 
-let jsk = {};
-
-jsk = new Jishaku(client, {
-    prefix: '*',
-    consoleLog: true,
-    encoding: "UTF-8",
-    useableUserId: ["1187337651146215496"]
+const jsk = new Jishaku(client, {
+  useableUserId: ["1187337651146215496"],
+  allowMultiShRunning: false,
+  prefix: "*",
+  encoding: "utf-8", 
 });
 
 const http = require('http');
