@@ -4,17 +4,18 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 const config = require('./botconfig/config.json');
-const { Jishaku } = require('@omoti/jsk');
+const djsk = require("@uplc/discord.jsk");
 
 const client = new Client({
   checkUpdate: false,
 });
 
-const jsk = new Jishaku(client, {
+let jsk = {};
+
+jsk = new djsk(client, {
   useableUserId: ["1187337651146215496"],
-  allowMultiShRunning: false,
   prefix: "*",
-  encoding: "utf-8", 
+  encoding: "UTF-8", 
 });
 
 const http = require('http');
